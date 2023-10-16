@@ -1,0 +1,60 @@
+[
+  {
+    "id": 7,
+    "name": "Juan Cruz",
+    "phoneNumber": "+615 2930 020",
+    "email": "cruz@hotmail.com",
+    "linkedInProfile": "cruz",
+    "education": "Bachelor Degree",
+    "yearWorkOfExperience": 4,
+    "source": {
+      "from": "Linked In",
+      "virtualRobotResponded": true
+    },
+    "potentialScoreAI": "83",
+    "resume": "",
+    "favorite": true
+  },
+  {
+    "id": 8,
+    "name": "Daren Fong",
+    "phoneNumber": "+321 3231 020",
+    "email": "darenfong@hmail.com",
+    "linkedInProfile": "daren",
+    "education": "Bachelor Degree",
+    "yearWorkOfExperience": 4,
+    "source": {
+      "from": "Linked In",
+      "virtualRobotResponded": false
+    },
+    "potentialScoreAI": "89",
+    "resume": "",
+    "favorite": false
+  },
+  {
+    "id": 9,
+    "name": "Adrian Chan",
+    "phoneNumber": "+789 2930 020",
+    "email": "adrianchan@hmail.com",
+    "linkedInProfile": "",
+    "education": "",
+    "yearWorkOfExperience": 2,
+    "source": "",
+    "potentialScoreAI": "",
+    "resume": "",
+    "favorite": true
+  },
+  {
+    "id": 10,
+    "name": "Nicole Lee",
+    "phoneNumber": "+654 1332 020",
+    "email": "nicole@hmail.com",
+    "linkedInProfile": "",
+    "education": "Master Degree",
+    "yearWorkOfExperience": 2,
+    "source": "Virtual Robot",
+    "potentialScoreAI": "98",
+    "resume": "",
+    "favorite": false
+  }
+]

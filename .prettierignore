@@ -1,0 +1,10 @@
+build
+node_modules
+e2e
+.vscode
+regression
+.idea
+public
+storybook-static
+.env.*
+*.md

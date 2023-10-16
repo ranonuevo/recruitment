@@ -1,0 +1,15 @@
+{
+  "extends": ["next", "prettier"],
+  "plugins": ["prettier"],
+  "rules": {
+    "semi": [2, "never"],
+    "no-unused-vars": ["error"],
+    "quotes": ["error", "single"],
+    "no-console": "warn",
+    "prettier/prettier": ["off", {
+      "endOfLine": "auto"
+    }],
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off"
+  }
+}
