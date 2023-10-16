@@ -7,12 +7,16 @@ export const options: NextAuthOptions = {
     signIn: '/',
     error: '/'
   },
+
   debug: process.env.NODE_ENV === 'development',
   session: { strategy: 'jwt' },
   secret: 'secret-dummy', // store this in a .env file
   providers: [
     CredentialsProvider({
       name: 'credentials',
+
+      clientId: process.env.REACT_APP_NEXTAUTH_URL,
+      clientSecret: process.env.REACT_APP_NEXTAUTH_SECRET,
       // @ts-ignore
       async authorize(credentials) { 
         const user = dummyCredentials.find((c) => c.username === credentials?.email && c.pass === credentials.password)
