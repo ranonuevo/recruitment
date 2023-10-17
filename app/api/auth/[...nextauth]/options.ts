@@ -8,7 +8,7 @@ export const options: NextAuthOptions = {
     error: '/'
   },
 
-  debug: process.env.NODE_ENV === 'development',
+  // debug: process.env.NODE_ENV === 'development',
   session: { strategy: 'jwt' },
   secret: 'secret-dummy', // store this in a .env file
   providers: [

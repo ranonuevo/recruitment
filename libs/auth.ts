@@ -16,14 +16,16 @@ export const clearAuthInAllTabs = () => {
 
 
 export const clearAuth = (isPushState = false) => {
-  logoutChannel.postMessage('Logout')
+  // logoutChannel.postMessage('Logout')
   
-  signOut()
+  signOut({
+    callbackUrl: PATHS.PATH_SIGN_IN
+  })
 
   if (isPushState) {
-    window.history.pushState({}, '', PATHS.PATH_SIGN_IN)
+    // window.history.pushState({}, '', PATHS.PATH_SIGN_IN)
   } else {
-    window.location.href = PATHS.PATH_SIGN_IN
+    // window.location.href = PATHS.PATH_SIGN_IN
   }
 }
 
