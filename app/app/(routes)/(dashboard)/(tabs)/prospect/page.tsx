@@ -2,6 +2,8 @@
 import TableProspect from '@/components/TableProspect'
 import type { Metadata } from 'next'
 import SourceLegend from '@/components/datatables/cell/SourceLegend'
+import { Button } from '@/components/ui/button'
+import Tabs from '../../Tabs'
 
 export const metadata: Metadata = {
   title: 'Prospect'
@@ -9,7 +11,13 @@ export const metadata: Metadata = {
 
 export default function Prospect () {
   return (
-    <>
+    <div className=''>
+      <div className='flex justify-between mb-5'>
+        <Tabs />
+
+        <Button>Assign Prospect</Button>
+      </div>
+    
       <TableProspect />
 
       <div className='w-full mt-3 flex justify-end'>
@@ -24,7 +32,7 @@ export default function Prospect () {
           </li>
         </ul>
       </div>
-    </>
+    </div>
   )
 }
 

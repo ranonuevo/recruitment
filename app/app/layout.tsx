@@ -19,10 +19,10 @@ export default async function AdminLayout({
   const session = await getServerSession(authOptions)
   
   if (!session) {
-    return redirect(PATHS.PATH_SIGN_IN)
+    redirect(PATHS.PATH_SIGN_IN)
   }
 
   return (
-    <AppLayout>{ children } </AppLayout>
+    <AppLayout session={session}>{ children } </AppLayout>
   )
 }
