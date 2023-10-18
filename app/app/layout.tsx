@@ -23,6 +23,8 @@ export default async function AdminLayout({
   }
 
   return (
-    <AppLayout session={session}>{ children } </AppLayout>
+    <AppLayout session={session}>
+      { children } 
+    </AppLayout>
   )
 }

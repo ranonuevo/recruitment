@@ -33,7 +33,7 @@ interface DataTableProps<TData, TValue> extends React.HTMLAttributes<HTMLDivElem
   data: TData[]
   pageSize?: number
   pageLimitList?: number[]
-  toolbarLeftContent: any
+  contentToolBarLeftContent: any
 }
 
 
@@ -58,7 +58,7 @@ export default function DataTable<TData, TValue>({
   data,
   pageSize = PAGE_SIZE,
   pageLimitList = PAGE_LIMIT_LIST,
-  toolbarLeftContent = null
+  contentToolBarLeftContent = null
 }: DataTableProps<TData, TValue>) {
   const [tableData, setTableData] = useState(data)
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
@@ -130,7 +130,7 @@ export default function DataTable<TData, TValue>({
         table={table} 
         globalFilter={globalFilter} 
         setGlobalFilter={setGlobalFilter} 
-        leftContent={toolbarLeftContent}
+        leftContent={contentToolBarLeftContent}
       />
 
       <DataTableFilter table={table} />

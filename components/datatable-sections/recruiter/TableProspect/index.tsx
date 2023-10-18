@@ -1,20 +1,21 @@
-// 'use client'
 
-import { columns, Applicant } from '@/components/TableApplicant/columns'
+import { columns, Prospect } from './columns'
 import DataTable from '@/components/datatables/DataTable'
 import ViewType from './ViewType'
 import DatePickerWithRange from '@/components/ui/datepicker-with-range'
 import { getAllProspects } from '@/libs/prospects'
+import * as ROLES from '@/constants/roles'
+
 
 export default async function TableProspect() {
-  const applicantsData: Promise<Applicant[]> = getAllProspects()
-  const data = await applicantsData
+  const prospectsData: Promise<Prospect[]> = getAllProspects(ROLES.ROLE_RECRUITER)
+  const data = await prospectsData
   
   return (
     <DataTable 
       columns={columns} 
       data={data} 
-      toolbarLeftContent={
+      contentToolBarLeftContent={
         <>
           <ViewType />
           <DatePickerWithRange />

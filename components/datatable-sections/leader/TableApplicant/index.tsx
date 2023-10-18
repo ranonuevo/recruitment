@@ -14,7 +14,7 @@ export default async function TableApplicant() {
     <DataTable 
       columns={columns} 
       data={data} 
-      toolbarLeftContent={
+      contentToolBarLeftContent={
         <>
           <ViewType />
           <DatePickerWithRange />

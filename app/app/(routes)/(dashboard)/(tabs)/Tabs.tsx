@@ -6,8 +6,6 @@ import { cn } from '@/libs/utils'
 import Link from 'next/link'
 import * as paths from '@/constants/paths'
 
-
-
 export default function Tabs () {
   const pathname = usePathname()
   
