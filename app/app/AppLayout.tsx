@@ -1,13 +1,11 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-// import { useSession } from 'next-auth/react'
 import AppTopBar from '@/components/global/AppTopBar'
 import AppSideBar from '@/components/global/AppSideBar'
 import AppRightPanelBar from '@/components/global/AppRightPanelBar'
 import clx from '@/utils/clx'
 import AppContextProvider from '@/hooks/useAppContext'
-import * as ROLES from '@/constants/roles'
 
 type AppLayoutProps = {
   children: React.ReactNode,
@@ -18,9 +16,7 @@ export default function AppLayout({
   children,
   session
 }: AppLayoutProps) {
-  // const { data: session } = useSession()
-
-  const isRecruiter = session?.user?.role === ROLES.ROLE_RECRUITER? true : false
+  const { isRecruiter, user } = session
   const [isOpen, setIsOpen] = useState<boolean>(isRecruiter)
 
   useEffect(() => {
@@ -40,7 +36,7 @@ export default function AppLayout({
             )}
             id='content'
           >
-            <AppTopBar />
+            <AppTopBar user={user} />
             
             {children}
           </div>

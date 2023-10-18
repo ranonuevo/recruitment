@@ -28,7 +28,7 @@ export default function DataTableFilter<TData>({
   }
 
   return (
-    <div className='mb-3 flex items-center gap-2 bg-gray-200 p-2'>
+    <div className='mb-3 flex items-center gap-2 bg-gray-100 p-2'>
       {isColumnExist('source') && (
         <DataTableFacetedFilter
           column={table.getColumn('source')}

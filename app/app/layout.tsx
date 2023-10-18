@@ -1,9 +1,8 @@
 import type { Metadata } from 'next'
 import AppLayout from './AppLayout'
-import { options as authOptions } from '@/api/auth/[...nextauth]/options'
-import { getServerSession } from 'next-auth/next'
 import { redirect } from 'next/navigation'
 import * as PATHS from '@/constants/paths'
+import { getServerSideSession } from '@/libs/auth'
 
 export const metadata: Metadata = {
   title: 'App',
@@ -15,8 +14,7 @@ export default async function AdminLayout({
 }: {
   children: React.ReactNode
 }) {
-  
-  const session = await getServerSession(authOptions)
+  const session = await getServerSideSession()
   
   if (!session) {
     redirect(PATHS.PATH_SIGN_IN)

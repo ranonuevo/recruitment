@@ -5,24 +5,21 @@ import { Button } from '@/components/ui/button'
 import TableLeaderProspect from '@/components/datatable-sections/leader/TableProspect'
 import TableRecruiterProspect from '@/components/datatable-sections/recruiter/TableProspect'
 import Tabs from '../Tabs'
-import { options as authOptions } from '@/api/auth/[...nextauth]/options'
-import { getServerSession } from 'next-auth/next'
-import * as ROLES from '@/constants/roles'
+import { getServerSideSession } from '@/libs/auth'
 
 export const metadata: Metadata = {
   title: 'Prospect'
 }
 
 export default async function Prospect () {
-  const session = await getServerSession(authOptions)
-  const isRecuiter = session?.user?.role === ROLES.ROLE_RECRUITER
+  const { isRecruiter } = await getServerSideSession()
 
   return (
     <div className=''>
       <div className='flex justify-between mb-5'>
         <Tabs />
         {
-          isRecuiter? (
+          isRecruiter? (
             <Button>Create Prospect</Button>
           ) : (
             <Button>Assign Prospect</Button>
@@ -31,7 +28,7 @@ export default async function Prospect () {
       </div>
 
       {
-        isRecuiter? (
+        isRecruiter? (
           <TableRecruiterProspect />
         ) : (
           <TableLeaderProspect />
@@ -39,7 +36,7 @@ export default async function Prospect () {
       }
     
     {
-      !isRecuiter? (
+      !isRecruiter? (
 
         <div className='w-full mt-3 flex justify-end'>
           <ul className=''>

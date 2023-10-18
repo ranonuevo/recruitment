@@ -1,14 +1,11 @@
-// 'use client'
-
-import { useAppContext } from '@/hooks/useAppContext'
-
-export default function AppTopBar () {
-  let { session } = useAppContext()
+export default function AppTopBar ({
+  user
+}: any) {
 
   return (
     <div className='py-10'>
       <p className='text-4xl'>
-        Good Morning, { session?.user?.name }
+        Good Morning, { user?.name }
       </p>
     </div>
   )

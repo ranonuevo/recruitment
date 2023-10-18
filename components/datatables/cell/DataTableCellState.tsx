@@ -26,7 +26,7 @@ export default function DataTableCellState ({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant='ghost' className='m-0 p-0'>
+        <Button variant='ghost' className='m-0 p-0 h-auto text-left justify-start min-w-[100px]'>
           { state }
         </Button>
       </DropdownMenuTrigger>
