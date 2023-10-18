@@ -15,17 +15,20 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
+import clx from '@/utilities/clx'
 
 interface DataTableColumnHeaderProps<TData, TValue>
   extends HTMLAttributes<HTMLDivElement> {
   column: Column<TData, TValue>
-  title: string
+  title: string,
+  center?: boolean
 }
 
 export default function DataTableColumnHeader<TData, TValue>({
   column,
   title,
   className,
+  center = false
 }: DataTableColumnHeaderProps<TData, TValue>) {
   if (!column.getCanSort()) {
     return <div className={cn(className)}>{title}</div>
@@ -38,7 +41,12 @@ export default function DataTableColumnHeader<TData, TValue>({
           <Button
             variant='ghost'
             size='sm'
-            className='-ml-3 h-8 data-[state=open]:bg-accent'
+            className={clx(
+              '-ml-3 h-8 data-[state=open]:bg-accent',
+              {
+                'w-full text-center': center
+              }
+            )}
           >
             <span>{title}</span>
             {column.getIsSorted() === 'desc' ? (

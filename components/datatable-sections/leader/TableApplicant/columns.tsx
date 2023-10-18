@@ -91,7 +91,7 @@ export const columns: ColumnDef<Applicant>[] = [
     accessorKey: 'potentialScoreAI',
     // header: 'Potential Score AI',
     header: ({ column }) => <DataTableHeaderSortable column={column} title='Potential Score AI' />,
-    cell: data => <DataTableCellCenter data={data} isSortable={true} />
+    cell: data => <DataTableCellCenter data={data} isSortable={true} appendValue='%' />
   },
   {
     accessorKey: 'resume',

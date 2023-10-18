@@ -19,6 +19,7 @@ export const options: NextAuthOptions = {
       clientSecret: process.env.REACT_APP_NEXTAUTH_SECRET,
       // @ts-ignore
       async authorize(credentials) { 
+        // await new Promise(resolve => setTimeout(resolve, 50000))
         const user = dummyCredentials.find((c) => c.username === credentials?.email && c.pass === credentials.password)
 
         if (user) {

@@ -10,17 +10,20 @@ import { hookFormResolver } from '@/utils/jsonToYupSchema'
 import { Button } from '@/components/ui/button'
 import * as PATHS from '@/constants/paths'
 import { signIn } from 'next-auth/react'
+import { Loader2 } from 'lucide-react'
 
 
 export default function SignIn () {
   const router = useRouter()
   const [error, setError] = useState<String>('')
+  const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const hookForm = useForm({
     mode: 'onTouched',
     resolver: (...o) => hookFormResolver(formConfig, ...o),
     defaultValues: {
-      ...defaultValues
+      ...defaultValues,
+      isLoading
     }
   })
   const { 
@@ -31,6 +34,8 @@ export default function SignIn () {
 
   const onSubmit = async (data: any) => { 
     setError('')
+    setIsLoading(true)
+    setValue('isLoading', true)
     // console.log('submit', data) // eslint-disable-line
 
     try {
@@ -43,11 +48,15 @@ export default function SignIn () {
       if (signin?.status === 200) {
         router.push(PATHS.PATH_APP_DEFAULT)
       } else {
+        setIsLoading(false)
+        setValue('isLoading', false)
         setError('Incorrect email or password.')
         setValue('password', '')
       }
 
     } catch (error: any) {
+      setIsLoading(false)
+      setValue('isLoading', false)
       console.log({ error }) // eslint-disable-line
     }
   }
@@ -90,7 +99,14 @@ export default function SignIn () {
             </span>
           ) : null}
           
-          <Button type='submit' className='w-full'>Login</Button>
+          <Button type='submit' className='w-full' disabled={isLoading}>
+            {
+              isLoading && (
+                <Loader2 className='mr-2 h-4 w-4 animate-spin' />
+              )
+            }
+            Login
+          </Button>
         </form>
       </section>
     </main>

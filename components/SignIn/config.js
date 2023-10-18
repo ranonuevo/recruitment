@@ -6,7 +6,9 @@ export const formConfig = [
       label: 'Email',
       placeholder: 'example@gmail.com',
       readOnly: false,
-      disabled: false
+      disabled: (values, name) => { // eslint-disable-line
+        return values.isLoading
+      },
     },
     validation: {
       type: 'string',
@@ -21,6 +23,9 @@ export const formConfig = [
       type: 'password',
       label: 'Password',
       placeholder: '*********',
+      disabled: (values, name) => { // eslint-disable-line
+        return values.isLoading
+      },
     },
     validation: {
       type: 'string',

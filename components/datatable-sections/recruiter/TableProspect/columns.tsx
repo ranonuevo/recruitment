@@ -58,8 +58,8 @@ export const columns: ColumnDef<Prospect>[] = [
   },
   {
     accessorKey: 'potentialScoreAI',
-    header: ({ column }) => <DataTableHeaderSortable column={column} title='Potential Score AI' />,
-    cell: data => <DataTableCellCenter data={data} isSortable={true} />
+    header: ({ column }) => <DataTableHeaderSortable column={column} title='Potential Score AI' center={true} />,
+    cell: data => <DataTableCellCenter data={data} isSortable={true} appendValue='%' />
   },
   {
     accessorKey: 'mbti',
