@@ -1,59 +1,29 @@
 
 import type { Metadata } from 'next'
-import SourceLegend from '@/components/datatables/cell/SourceLegend'
-import { Button } from '@/components/ui/button'
-import TableLeaderProspect from '@/components/datatable-sections/leader/TableProspect'
-import TableRecruiterProspect from '@/components/datatable-sections/recruiter/TableProspect'
-import Tabs from '../Tabs'
 import { getServerSideSession } from '@/libs/auth'
+import RoleRecruiterView from './RoleRecruiterView'
+import RoleLeaderView from './RoleLeaderView'
+
+import { getAllProspects } from '@/libs/prospects'
+import * as ROLES from '@/constants/roles'
+import { Prospect as ProspectType } from '@/app/app/(routes)/(dashboard)/(tabs)/prospect/RoleRecruiterView/columns'
 
 export const metadata: Metadata = {
   title: 'Prospect'
 }
 
 export default async function Prospect () {
-  const { isRecruiter } = await getServerSideSession()
+  const { isRecruiter, user } = await getServerSideSession()
+  const role = isRecruiter? ROLES.ROLE_RECRUITER : ROLES.ROLE_LEADER
 
-  return (
-    <div className=''>
-      <div className='flex justify-between mb-5'>
-        <Tabs />
-        {
-          isRecruiter? (
-            <Button>Create Prospect</Button>
-          ) : (
-            <Button>Assign Prospect</Button>
-          )
-        }
-      </div>
+  const prospectsData: Promise<ProspectType[]> = getAllProspects(role)
+  const data = await prospectsData
 
-      {
-        isRecruiter? (
-          <TableRecruiterProspect />
-        ) : (
-          <TableLeaderProspect />
-        )
-      }
-    
-    {
-      !isRecruiter? (
+  if (isRecruiter) {
+    return <RoleRecruiterView user={user} data={data} />
+  }
 
-        <div className='w-full mt-3 flex justify-end'>
-          <ul className=''>
-            <li className='flex items-center'>
-              <SourceLegend isResponded={true} className='mr-2' /> 
-              Prospect responded the Virtual Robot
-            </li>
-            <li className='flex items-center'>
-              <SourceLegend isResponded={false} className='mr-2' /> 
-              Prospect did not respond Virtual Robot
-            </li>
-          </ul>
-        </div>
-      ) : null
-    }
-    </div>
-  )
+  return <RoleLeaderView user={user} data={data} />
 }
 
 

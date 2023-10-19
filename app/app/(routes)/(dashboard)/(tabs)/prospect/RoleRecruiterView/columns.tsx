@@ -1,14 +1,19 @@
 'use client'
 
 import { ColumnDef } from '@tanstack/react-table'
-import DataTableRowActions from '@/components/datatables/DataTableRowActions'
-import DataTableHeaderSortable from '@/components/datatables/DataTableHeaderSortable'
+
 import TableRowActions from './TableRowActions'
-import DataTableCellCenter from '@/components/datatables/cell/DataTableCellCenter'
-import DataTableCellFavorite from '@/components/datatables/cell/DataTableCellFavorite'
-import DataTableCellAvatar from '@/components/datatables/cell/DataTableCellAvatar'
-import DataTableCellState from '@/components/datatables/cell/DataTableCellState'
+
+import { DataTableRowActions } from '@/components/datatables/tools'
+import { DataTableHeaderSortable } from '@/components/datatables/header'
+import {
+  DataTableCellCenter,
+  DataTableCellFavorite,
+  DataTableCellAvatar,
+  DataTableCellState
+} from '@/components/datatables/cell'
 import * as STATIC from '@/constants/static-data'
+import * as PATHS from '@/constants/paths'
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -27,11 +32,17 @@ export type Prospect = {
 export const columns: ColumnDef<Prospect>[] = [
   {
     accessorKey: 'name',
+    meta: {
+      label: 'Name'
+    },
     header: ({ column }) => <DataTableHeaderSortable column={column} title='Name' />,
-    cell: data => <DataTableCellAvatar data={data} />,
+    cell: data => <DataTableCellAvatar data={data} link={`${PATHS.PATH_APP_PROSPECT}/${data?.row?.original?.id}`} />,
   },
   {
     accessorKey: 'state',
+    meta: {
+      label: 'State'
+    },
     header: ({ column }) => <DataTableHeaderSortable column={column} title='State' />,
     cell: data => <DataTableCellState data={data} />,
     filterFn: (row, id, value) => {
@@ -49,24 +60,39 @@ export const columns: ColumnDef<Prospect>[] = [
   },
   {
     accessorKey: 'contactNumber',
+    meta: {
+      label: 'Contact No'
+    },
     header: ({ column }) => <DataTableHeaderSortable column={column} title='Contact No' />,
     
   },
   {
     accessorKey: 'email',
+    meta: {
+      label: 'Email'
+    },
     header: ({ column }) => <DataTableHeaderSortable column={column} title='Email' />,
   },
   {
     accessorKey: 'potentialScoreAI',
+    meta: {
+      label: 'Potential Score AI'
+    },
     header: ({ column }) => <DataTableHeaderSortable column={column} title='Potential Score AI' center={true} />,
     cell: data => <DataTableCellCenter data={data} isSortable={true} appendValue='%' />
   },
   {
     accessorKey: 'mbti',
+    meta: {
+      label: 'MBTI'
+    },
     header: ({ column }) => <DataTableHeaderSortable column={column} title='MBTI' />,
   },
   {
     accessorKey: 'favorite',
+    meta: {
+      label: 'Favorite'
+    },
     header: '',
     cell: data => <DataTableCellFavorite data={data} />
   },

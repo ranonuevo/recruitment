@@ -14,12 +14,12 @@ export default function ViewType () {
     <> 
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant='outline' className='px-10'>
+          <Button variant='outline' className='flex'>
             View Type
           </Button>
         </DropdownMenuTrigger>
       
-      <DropdownMenuContent align='end'>
+      <DropdownMenuContent align='center'>
         <DropdownMenuItem>
           <List size={18} />
           <span className='ml-4'>List View</span>

@@ -6,7 +6,6 @@
   position: relative;
 
   .label {
-    color: inherit;
     margin-bottom: 0.25rem;
     display: block;
     cursor: default;
@@ -17,7 +16,7 @@
   }
 
   .controller {
-    background-color: #1f2937;
+    background-color: #ffffff;
     padding: 0.5rem;
     border-radius: 0.5rem;
     border: 2px solid rgb(31, 41, 55);
@@ -31,7 +30,7 @@
     &:focus,
     &:focus-visible,
     &.focus {
-      border: 2px solid rgb(49, 62, 81);
+      // border: 2px solid rgb(49, 62, 81);
     }
 
     .value {
@@ -98,9 +97,9 @@
     padding: 0;
     list-style: none;
     width: 100%;
-    background-color: #1f2937;
-    border-radius: 0.5rem;
-    border: 1px solid rgb(31, 41, 55);
+    background-color: #ffffff;
+    border-radius: 2px;
+    border: 1px solid #e5e7eb;
     margin-top: 5px;
     overflow-y: auto;
     line-height: 1.5;
@@ -109,16 +108,15 @@
 
     .option {
       padding: 0.5rem;
-      color: $text-color;
       cursor: pointer;
       word-break: break-all;
 
       &.selected {
-        background-color: #1a222d;
+        background-color: rgb(241, 245, 249);
       }
 
       &.highlighted {
-        background-color: #2b3747;
+        background-color: rgb(241, 245, 249);
       }
     }
 

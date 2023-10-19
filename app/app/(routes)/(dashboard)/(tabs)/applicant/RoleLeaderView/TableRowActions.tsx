@@ -4,6 +4,7 @@ import {
   DropdownMenuLabel,
 } from '@/components/ui/dropdown-menu'
 import { useModalConfirm } from '@/hooks/useModalConfirm'
+import { XCircle, Pencil } from 'lucide-react'
 
 
 type DataTableActionsProps = {
@@ -35,10 +36,14 @@ export default function TableRowActions ({
       <DropdownMenuItem
         onClick={() => navigator.clipboard.writeText(data.id)}
       >
-        Edit
+        <div className='flex gap-2 items-center'>
+          <Pencil size={12} /> Edit
+        </div>
       </DropdownMenuItem>
       <DropdownMenuItem onClick={handleDelete}>
-        Delete
+        <div className='flex gap-2 items-center'>
+          <XCircle size={12} /> Delete
+        </div>
       </DropdownMenuItem>
     </DropdownMenuContent>
     </> 

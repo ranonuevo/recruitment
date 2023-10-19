@@ -2,14 +2,21 @@
 
 import { ColumnDef } from '@tanstack/react-table'
 import { Checkbox } from '@/components/ui/checkbox'
-import DataTableRowActions from '@/components/datatables/DataTableRowActions'
-import DataTableHeaderSortable from '@/components/datatables/DataTableHeaderSortable'
-import TableRowActions from './TableRowActions'
 import { FileText } from 'lucide-react'
-import DataTableCellCenter from '@/components/datatables/cell/DataTableCellCenter'
-import DataTableCellFavorite from '@/components/datatables/cell/DataTableCellFavorite'
-import DataTableCellAvatar from '@/components/datatables/cell/DataTableCellAvatar'
-import DataTableCellSource from '@/components/datatables/cell/DataTableCellSource'
+
+import { DataTableHeaderSortable } from '@/components/datatables/header'
+import {
+  DataTableRowActions
+} from '@/components/datatables/tools'
+
+import TableRowActions from './TableRowActions'
+import { 
+  DataTableCellCenter,
+  DataTableCellFavorite,
+  DataTableCellAvatar,
+  DataTableCellSource,
+  DataTableCellLinkedIn
+} from '@/components/datatables/cell'
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -51,24 +58,40 @@ export const columns: ColumnDef<Applicant>[] = [
   },
   {
     accessorKey: 'name',
+    meta: {
+      label: 'Name'
+    },
     header: ({ column }) => <DataTableHeaderSortable column={column} title='Name' />,
     cell: data => <DataTableCellAvatar data={data} />,
   },
   {
     accessorKey: 'phoneNumber',
+    meta: {
+      label: 'Phone Number'
+    },
     header: ({ column }) => <DataTableHeaderSortable column={column} title='Phone Number' />,
     
   },
   {
     accessorKey: 'email',
+    meta: {
+      label: 'Email'
+    },
     header: ({ column }) => <DataTableHeaderSortable column={column} title='Email' />,
   },
   {
     accessorKey: 'linkedInProfile',
+    meta: {
+      label: 'LinkedIn Profile'
+    },
     header: ({ column }) => <DataTableHeaderSortable column={column} title='LinkedIn Profile' />,
+    cell: data => <DataTableCellLinkedIn data={data}  />
   },
   {
     accessorKey: 'education',
+    meta: {
+      label: 'Education'
+    },
     header: ({ column }) => <DataTableHeaderSortable column={column} title='Education' />,
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id))
@@ -76,11 +99,17 @@ export const columns: ColumnDef<Applicant>[] = [
   },
   {
     accessorKey: 'yearWorkOfExperience',
+    meta: {
+      label: 'Years of Work Experience'
+    },
     header: ({ column }) => <DataTableHeaderSortable column={column} title='Years of Work Experience' />,
     cell: data => <DataTableCellCenter data={data} isSortable={true} />
   },
   {
     accessorKey: 'source',
+    meta: {
+      label: 'Source'
+    },
     header: ({ column }) => <DataTableHeaderSortable column={column} title='Source' />,
     cell: data => <DataTableCellSource data={data} />,
     filterFn: (row, id, value) => {
@@ -89,12 +118,18 @@ export const columns: ColumnDef<Applicant>[] = [
   },
   {
     accessorKey: 'potentialScoreAI',
+    meta: {
+      label: 'Potential Score AI'
+    },
     // header: 'Potential Score AI',
     header: ({ column }) => <DataTableHeaderSortable column={column} title='Potential Score AI' />,
     cell: data => <DataTableCellCenter data={data} isSortable={true} appendValue='%' />
   },
   {
     accessorKey: 'resume',
+    meta: {
+      label: 'Resume'
+    },
     header: 'Resume',
     cell: () => (
       <div className='flex justify-center'>
@@ -104,6 +139,9 @@ export const columns: ColumnDef<Applicant>[] = [
   },
   {
     accessorKey: 'favorite',
+    meta: {
+      label: 'Favorite'
+    },
     header: '',
     cell: data => <DataTableCellFavorite data={data} />
   },

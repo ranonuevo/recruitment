@@ -10,20 +10,20 @@ export default function Tabs () {
   const pathname = usePathname()
   
   return (
-    <div>
+    <div className='flex'>
       <Link 
         href={paths.PATH_APP_APPLICANT}
         className={cn(buttonVariants({ 
           variant: paths.PATH_APP_APPLICANT === pathname? 'default' : 'outline'
-        }), 'mr-4')} 
+        }), 'rounded-none w-[150px]')} 
       >
         Applicant
       </Link>
       <Link 
         href={paths.PATH_APP_PROSPECT}
-        className={buttonVariants({ 
+        className={cn(buttonVariants({ 
           variant: paths.PATH_APP_PROSPECT === pathname? 'default' : 'outline'
-        })} 
+        }), 'rounded-none w-[150px]')} 
       >
         Prospect
       </Link>

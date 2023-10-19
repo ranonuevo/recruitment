@@ -32,7 +32,7 @@ export default function DataTableViewOptions<TData>({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align='end' className='w-[150px]'>
-        <DropdownMenuLabel>Toggle columns</DropdownMenuLabel>
+        <DropdownMenuLabel>Toggle Columns</DropdownMenuLabel>
         <DropdownMenuSeparator />
         {table
           .getAllColumns()
@@ -40,15 +40,15 @@ export default function DataTableViewOptions<TData>({
             (column) =>
               typeof column.accessorFn !== 'undefined' && column.getCanHide()
           )
-          .map((column) => {
+          .map((column : any) => {
             return (
               <DropdownMenuCheckboxItem
                 key={column.id}
-                className='capitalize'
+                className=''
                 checked={column.getIsVisible()}
                 onCheckedChange={(value) => column.toggleVisibility(!!value)}
               >
-                {column.id}
+                {column?.columnDef?.meta?.label || column.id}
               </DropdownMenuCheckboxItem>
             )
           })}

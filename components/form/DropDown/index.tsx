@@ -21,7 +21,8 @@ export default function DropDown ({
   onBlur,
   disabled,
   readOnly,
-  maxOptionsHeight = '15rem'
+  maxOptionsHeight = '15rem',
+  styleController
 }: SelectProps) {
   const controllerRef = useRef<HTMLDivElement>(null)
   const [isOpen, setIsOpen] = useState(false)
@@ -124,13 +125,16 @@ export default function DropDown ({
     <div 
       onKeyDown={handleKeyDown}
       onBlur={handleBlur}
-      className={clx(styles.container, {
-        [styles.show]: isOpen,
-        [styles['one-liner']]: optionOneLiner,
-        [styles['has-error']]: hasError,
-        [styles.disabled]: disabled,
-        [styles['read-only']]: readOnly
-      })}
+      className={clx(
+        styles.container, 
+        {
+          [styles.show]: isOpen,
+          [styles['one-liner']]: optionOneLiner,
+          [styles['has-error']]: hasError,
+          [styles.disabled]: disabled,
+          [styles['read-only']]: readOnly
+        }
+      )}
     >
       {
         label? (
@@ -155,6 +159,7 @@ export default function DropDown ({
           openOptions()
         }}
         isFocusController={isFocusController}
+        styleController={styleController}
       />
       
       { hasError && (<small>{ error } </small>) }

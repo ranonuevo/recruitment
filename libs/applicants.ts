@@ -1,10 +1,11 @@
 
 import * as API from '@/constants/api'
 
-export async function getAllApplicants () {
+export async function getAllApplicants (role: string) {
   // await new Promise(resolve => setTimeout(resolve, 5000))
 
-  const res = await fetch(API.API_APPLICANTS)
+  const url = `${API.API_APPLICANTS}?for=${role}`
+  const res = await fetch(url)
 
   if (!res.ok) {
     throw new Error('Failed to fetch applicants')
@@ -12,14 +13,3 @@ export async function getAllApplicants () {
 
   return res.json()
 }
-
-export async function getApplicant (id: string) {
-  const res = await fetch(`${API.API_APPLICANTS}/${id}`)
-
-  if (!res.ok) {
-    throw new Error('Failed to fetch applicant')
-  }
-
-  return res.json()
-}
-

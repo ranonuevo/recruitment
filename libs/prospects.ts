@@ -1,7 +1,7 @@
 
 import * as API from '@/constants/api'
 
-export async function getAllProspects (role: string = 'leader') {
+export async function getAllProspects (role: string) {
   
   const url = `${API.API_PROSPECTS}?for=${role}`
   const res = await fetch(url)

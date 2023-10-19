@@ -8,7 +8,8 @@ const Controller = ({
   changeOption,
   controllerRef,
   handleClick,
-  isFocusController
+  isFocusController,
+  styleController
 }: ControllerProps) => {
 
   const renderPlaceholder = () => <span className={styles.placeholder}>{ placeholder }</span>
@@ -53,6 +54,7 @@ const Controller = ({
       tabIndex={0} 
       ref={controllerRef}
       onClick={handleClick}
+      style={styleController}
     >
       <div className={styles.value}>
         { renderValue() }

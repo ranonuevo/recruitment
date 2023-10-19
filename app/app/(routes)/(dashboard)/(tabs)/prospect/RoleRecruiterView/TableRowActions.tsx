@@ -4,6 +4,7 @@ import {
   DropdownMenuLabel,
 } from '@/components/ui/dropdown-menu'
 import { useModalConfirm } from '@/hooks/useModalConfirm'
+import { CheckCircle2, XCircle, Pencil } from 'lucide-react'
 
 
 type DataTableActionsProps = {
@@ -19,8 +20,8 @@ export default function TableRowActions ({
 
   const handleDelete = () => {
     modalConfirm({
-      title: 'Are you absolutely sure?',
-      description: 'This action cannot be undone. This will permanently delete the data from our servers.'
+      title: 'Prospect will not proceed.',
+      description: 'This action cannot be undone.'
     })
     .then(() => {
       // router.push(PATHS.PATH_HOME)
@@ -35,10 +36,19 @@ export default function TableRowActions ({
       <DropdownMenuItem
         onClick={() => navigator.clipboard.writeText(data.id)}
       >
-        Edit
+        <div className='flex gap-2 items-center'>
+          <CheckCircle2 size={12} /> Create Applicant
+        </div>
       </DropdownMenuItem>
       <DropdownMenuItem onClick={handleDelete}>
-        Delete
+        <div className='flex gap-2 items-center'>
+          <XCircle size={12} /> Not Proceeding
+        </div>
+      </DropdownMenuItem>
+      <DropdownMenuItem>
+        <div className='flex gap-2 items-center'>
+          <Pencil size={12} /> Edit Profile
+        </div>
       </DropdownMenuItem>
     </DropdownMenuContent>
     </> 

@@ -29,7 +29,8 @@ export type SelectProps = {
   onBlur?: Function,
   maxOptionsHeight?: string,
   disabled?: boolean,
-  readOnly?: boolean,
+  readOnly?: boolean
+  styleController?: React.CSSProperties | undefined
 } & (SingleSelectProps | MultipleSelectProps)
 
 
@@ -52,4 +53,5 @@ export type ControllerProps = {
   controllerRef: React.RefObject<HTMLDivElement>
   handleClick: () => void
   isFocusController: boolean
+  styleController: React.CSSProperties | undefined
 } 
