@@ -6,6 +6,8 @@ import DataTableCellFavorite from './DataTableCellFavorite'
 import DataTableCellSource from './DataTableCellSource'
 import DataTableCellState from './DataTableCellState'
 import DataTableCellLinkedIn from './DataTableCellLinkedIn'
+import DataTableCellResume from './DataTableCellResume'
+import DataTableCellContactNumber from './DataTableCellContactNumber'
 
 export {
   SourceLegend,
@@ -14,5 +16,7 @@ export {
   DataTableCellFavorite,
   DataTableCellSource,
   DataTableCellState,
-  DataTableCellLinkedIn
+  DataTableCellLinkedIn,
+  DataTableCellResume,
+  DataTableCellContactNumber
 }

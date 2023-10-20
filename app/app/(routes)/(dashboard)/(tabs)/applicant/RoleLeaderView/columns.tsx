@@ -2,7 +2,6 @@
 
 import { ColumnDef } from '@tanstack/react-table'
 import { Checkbox } from '@/components/ui/checkbox'
-import { FileText } from 'lucide-react'
 
 import { DataTableHeaderSortable } from '@/components/datatables/header'
 import {
@@ -15,7 +14,9 @@ import {
   DataTableCellFavorite,
   DataTableCellAvatar,
   DataTableCellSource,
-  DataTableCellLinkedIn
+  DataTableCellLinkedIn,
+  DataTableCellResume,
+  DataTableCellContactNumber
 } from '@/components/datatables/cell'
 
 // This type is used to define the shape of our data.
@@ -30,7 +31,7 @@ export type Applicant = {
   yearWorkOfExperience?: number
   source?: string
   potentialScoreAI?: string
-  resume?: string
+  resume?: boolean
   favorite?: boolean
 }
 
@@ -70,7 +71,7 @@ export const columns: ColumnDef<Applicant>[] = [
       label: 'Phone Number'
     },
     header: ({ column }) => <DataTableHeaderSortable column={column} title='Phone Number' />,
-    
+    cell: data => <DataTableCellContactNumber data={data} />
   },
   {
     accessorKey: 'email',
@@ -131,11 +132,10 @@ export const columns: ColumnDef<Applicant>[] = [
       label: 'Resume'
     },
     header: 'Resume',
-    cell: () => (
-      <div className='flex justify-center'>
-        <FileText />
-      </div>
-    ),
+    cell: data => <DataTableCellResume data={data} />,
+    filterFn: (row, id, value) => {
+      return value === Boolean(row.getValue(id))
+    },
   },
   {
     accessorKey: 'favorite',
@@ -143,7 +143,10 @@ export const columns: ColumnDef<Applicant>[] = [
       label: 'Favorite'
     },
     header: '',
-    cell: data => <DataTableCellFavorite data={data} />
+    cell: data => <DataTableCellFavorite data={data} />,
+    filterFn: (row, id, value) => {
+      return value === Boolean(row.getValue(id))
+    },
   },
   {
     id: 'actions',

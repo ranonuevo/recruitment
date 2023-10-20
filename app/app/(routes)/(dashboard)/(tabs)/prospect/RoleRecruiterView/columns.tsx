@@ -10,7 +10,8 @@ import {
   DataTableCellCenter,
   DataTableCellFavorite,
   DataTableCellAvatar,
-  DataTableCellState
+  DataTableCellState,
+  DataTableCellContactNumber
 } from '@/components/datatables/cell'
 import * as STATIC from '@/constants/static-data'
 import * as PATHS from '@/constants/paths'
@@ -64,7 +65,7 @@ export const columns: ColumnDef<Prospect>[] = [
       label: 'Contact No'
     },
     header: ({ column }) => <DataTableHeaderSortable column={column} title='Contact No' />,
-    
+    cell: data => <DataTableCellContactNumber data={data} />
   },
   {
     accessorKey: 'email',
@@ -94,7 +95,10 @@ export const columns: ColumnDef<Prospect>[] = [
       label: 'Favorite'
     },
     header: '',
-    cell: data => <DataTableCellFavorite data={data} />
+    cell: data => <DataTableCellFavorite data={data} />,
+    filterFn: (row, id, value) => {
+      return value === Boolean(row.getValue(id))
+    },
   },
   {
     id: 'actions',

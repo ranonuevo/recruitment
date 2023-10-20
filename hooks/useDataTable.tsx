@@ -16,8 +16,6 @@ import {
 } from '@tanstack/react-table'
 import { PAGE_SIZE } from '@/constants/datatable'
 
-
-
 function useSkipper() {
   const shouldSkipRef = useRef(true)
   const shouldSkip = shouldSkipRef.current
@@ -67,6 +65,7 @@ export const useDataTable = (
     onColumnVisibilityChange: setColumnVisibility,
     onRowSelectionChange: setRowSelection,
     onGlobalFilterChange: setGlobalFilter,
+
 
     getFacetedRowModel: getFacetedRowModel(),
     getFacetedUniqueValues: getFacetedUniqueValues(),

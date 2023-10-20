@@ -3,8 +3,8 @@ import {
 } from '@radix-ui/react-icons'
 import { Table } from '@tanstack/react-table'
 import DataTableFacetedFilter from './DataTableFacetedFilter'
+import DataTableCheckboxFilter from './DataTableCheckboxFilter'
 import { Button } from '@/components/ui/button'
-// import { Checkbox } from '@/components/ui/checkbox'
 import { 
   STATIC_STATES,
   STATIC_SOURCES,
@@ -53,12 +53,17 @@ export default function DataTableFilter<TData>({
       )}
 
       {isColumnExist('favorite') && (
-        // <Checkbox
-        //   checked={row.getIsSelected()}
-        //   onCheckedChange={(value: any) => row.toggleSelected(!!value)}
-        //   aria-label='Select row'
-        // />
-        ''
+        <DataTableCheckboxFilter
+          column={table.getColumn('favorite')}
+          title='Favorite'
+        />
+      )}
+
+      {isColumnExist('resume') && (
+        <DataTableCheckboxFilter
+          column={table.getColumn('resume')}
+          title='Has Resume'
+        />
       )}
 
       {isFiltered && (

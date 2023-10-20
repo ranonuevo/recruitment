@@ -9,7 +9,7 @@
     "yearWorkOfExperience": 4,
     "source": "Website",
     "potentialScoreAI": "95",
-    "resume": "",
+    "resume": true,
     "favorite": true
   },
   {
@@ -22,7 +22,7 @@
     "yearWorkOfExperience": 8,
     "source": "Website",
     "potentialScoreAI": "81",
-    "resume": "",
+    "resume": false,
     "favorite": null
   },
   {
@@ -35,7 +35,7 @@
     "yearWorkOfExperience": 4,
     "source": "Website",
     "potentialScoreAI": "85",
-    "resume": "",
+    "resume": true,
     "favorite": ""
   },
   {
@@ -48,7 +48,7 @@
     "yearWorkOfExperience": 4,
     "source": "LinkedIn",
     "potentialScoreAI": "95",
-    "resume": "",
+    "resume": false,
     "favorite": false
   },
   {
@@ -61,7 +61,7 @@
     "yearWorkOfExperience": 9,
     "source": "Virtual Robot",
     "potentialScoreAI": "93",
-    "resume": "",
+    "resume": false,
     "favorite": false
   },
   {
@@ -74,7 +74,7 @@
     "yearWorkOfExperience": 4,
     "source": "Team Profile (Eric 78123)",
     "potentialScoreAI": "99",
-    "resume": "",
+    "resume": false,
     "favorite": true
   },
   {
@@ -87,7 +87,7 @@
     "yearWorkOfExperience": 4,
     "source": "Event AAA",
     "potentialScoreAI": "83",
-    "resume": "",
+    "resume": false,
     "favorite": true
   },
   {
@@ -100,7 +100,7 @@
     "yearWorkOfExperience": 4,
     "source": "Event XXX",
     "potentialScoreAI": "89",
-    "resume": "",
+    "resume": true,
     "favorite": false
   },
   {
@@ -113,7 +113,7 @@
     "yearWorkOfExperience": 2,
     "source": "",
     "potentialScoreAI": "",
-    "resume": "",
+    "resume": true,
     "favorite": true
   },
   {
@@ -126,7 +126,7 @@
     "yearWorkOfExperience": 2,
     "source": "Virtual Robot",
     "potentialScoreAI": "98",
-    "resume": "",
+    "resume": false,
     "favorite": false
   }
 ]
