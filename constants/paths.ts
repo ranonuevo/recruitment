@@ -11,7 +11,7 @@ export const PATH_APP_DASHBOARD = PATH_APP + '/dashboard'
 
 export const PATH_APP_APPLICANT = PATH_APP + '/applicant'
 export const PATH_APP_PROSPECT = PATH_APP + '/prospect'
-
+export const PATH_APP_EVENTS = PATH_APP + '/events'
 
 
 export const PATH_APP_DEFAULT = PATH_APP_APPLICANT

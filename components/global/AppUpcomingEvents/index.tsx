@@ -1,6 +1,8 @@
 import AppTabs from '@/components/global/AppTabs'
 import { Button } from '@/components/ui/button'
 import EventRows from './EventRows'
+import Link from 'next/link'
+import * as PATHS from '@/constants/paths'
 
 const items1 = [
   {
@@ -60,7 +62,9 @@ export default function AppUpcomingEvents () {
 
       <div className='flex justify-between items-center mb-2'>
         <h2 className='text-lg font-bold'>Upcoming Events</h2>
-        <Button variant='outline'>View All</Button>
+        <Button variant='outline' asChild>
+          <Link href={PATHS.PATH_APP_EVENTS}>View All</Link>
+        </Button>
       </div>
       
 
