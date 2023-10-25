@@ -5,15 +5,17 @@ import { buildInitials } from '@/utils/helper/string'
 type AppAvatarProps = {
   imgUrl?: string
   name?: string
+  className?: string
 }
 
 export default function AppAvatar ({
   imgUrl = '',
-  name = ''
+  name = '',
+  className = ''
 }: AppAvatarProps) {
 
   return (
-    <Avatar>
+    <Avatar className={className}>
       <AvatarImage src={imgUrl} />
       <AvatarFallback>
         { buildInitials(name) }

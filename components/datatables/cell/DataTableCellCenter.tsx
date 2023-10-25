@@ -11,7 +11,9 @@ export default function DataTableCellCenter ({
 }: DataTableCellCenterProps) {
   return (
     <div className={`flex justify-center ${isSortable? 'pr-[32px]' : 'pr-[8px]'}`}>
-      { data.getValue() }{ appendValue }
+      {
+        data.getValue()? `${data.getValue()}${appendValue}` : ''
+      }
     </div>
   )
 }

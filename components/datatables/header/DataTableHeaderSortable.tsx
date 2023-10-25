@@ -22,13 +22,15 @@ interface DataTableColumnHeaderProps<TData, TValue>
   column: Column<TData, TValue>
   title: string,
   center?: boolean
+  styleTitle?: React.CSSProperties
 }
 
 export default function DataTableColumnHeader<TData, TValue>({
   column,
   title,
   className,
-  center = false
+  center = false,
+  styleTitle
 }: DataTableColumnHeaderProps<TData, TValue>) {
   if (!column.getCanSort()) {
     return <div className={cn(className)}>{title}</div>
@@ -48,7 +50,7 @@ export default function DataTableColumnHeader<TData, TValue>({
               }
             )}
           >
-            <span>{title}</span>
+            <span style={styleTitle}>{title}</span>
             {column.getIsSorted() === 'desc' ? (
               <ArrowDownIcon className='ml-2 h-4 w-4' />
             ) : column.getIsSorted() === 'asc' ? (

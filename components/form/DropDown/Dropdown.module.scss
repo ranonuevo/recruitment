@@ -1,8 +1,8 @@
 .container {
 	--error-color: #ea001e;
   $text-color: rgb(148, 163, 184);
+  width: 100%;
 
-  margin-bottom: 10px;
   position: relative;
 
   .label {
@@ -16,8 +16,8 @@
   }
 
   .controller {
-    background-color: #ffffff;
-    padding: 0.5rem;
+    background-color: #FFF;
+    padding: 10px;
     border-radius: 0.5rem;
     border: 2px solid rgb(31, 41, 55);
     min-height: 2.5rem;
@@ -26,6 +26,8 @@
     border-color: transparent;
     outline: 0;
     box-sizing: border-box;
+    cursor: pointer;
+    width: 100%;
 
     &:focus,
     &:focus-visible,

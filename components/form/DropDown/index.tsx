@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState, useRef } from 'react'
 import styles from './Dropdown.module.scss'
 import { SelectOption, SelectProps } from './types'

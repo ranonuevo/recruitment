@@ -103,7 +103,18 @@ export const columns: ColumnDef<Applicant>[] = [
     meta: {
       label: 'Years of Work Experience'
     },
-    header: ({ column }) => <DataTableHeaderSortable column={column} title='Years of Work Experience' />,
+    header: ({ column }) => {
+      return (
+        <DataTableHeaderSortable 
+          column={column} 
+          title='Years of Work Experience' 
+          styleTitle={{
+            minWidth: '80px',
+            fontSize: 12
+          }}
+        />
+      )
+    },
     cell: data => <DataTableCellCenter data={data} isSortable={true} />
   },
   {

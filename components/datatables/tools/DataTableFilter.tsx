@@ -1,3 +1,4 @@
+
 import {
   Cross2Icon,
 } from '@radix-ui/react-icons'
@@ -64,7 +65,7 @@ export default function DataTableFilter<TData>({
           column={table.getColumn('resume')}
           title='Has Resume'
         />
-      )}
+      )} 
 
       {isFiltered && (
         <Button

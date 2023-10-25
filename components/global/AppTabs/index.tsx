@@ -4,22 +4,34 @@ import clx from '@/utils/clx'
 
 type Item = {
   code: string
-  title: string
+  title: String
   content: any
 }
 
 type AppTabsProps = {
   items: Item[]
+  defaultTabSelected: string
+  variant: 'default' | 'inline'
 }
 
 export default function AppTabs ({
-  items
+  items,
+  defaultTabSelected = '',
+  variant = 'default'
 }: AppTabsProps) {
-  const [activeTab, setActiveTab] = useState(items[0].code)
+
+  const getDefaultTabSelected = () => {
+    if (defaultTabSelected) {
+      const foundTab = items.find(i => i.code === defaultTabSelected)
+      return foundTab? defaultTabSelected : items[0].code
+    }
+    return items[0].code
+  }
+  
+  const [activeTab, setActiveTab] = useState(getDefaultTabSelected())
 
   return (
     <div className='w-full'>
-      
       <div className='flex'>
         {
           items.map((item, index) => {
@@ -28,8 +40,14 @@ export default function AppTabs ({
                 key={`${item.code}-${index}`}
                 onClick={() => setActiveTab(item.code)}
                 className={clx(
-                  activeTab === item.code? 'border-b-primary' : 'border-b-[#efefef]',
-                  'flex-1 text-center border-b-2 border-b-[#efefef] py-2 cursor-pointer',
+                  'text-center py-2 cursor-pointer',
+                  {
+                    'flex-1 border-b-2 border-b-[#efefef]': variant === 'default',
+                    'mr-10': variant === 'inline',
+                  },
+                  variant === 'default' && activeTab === item.code? 'border-b-primary' : 'border-b-[#efefef]',
+                  variant === 'inline' && activeTab === item.code? 'text-primary' : '',
+                  
                 )}
               >
                 { item.title }

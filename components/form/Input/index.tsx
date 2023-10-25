@@ -7,6 +7,7 @@ type InputProps = {
   type?: string,
   error?: any,
   register?: Function,
+  appendRightContent?: React.ReactElement | null
 } & React.ComponentProps<'input'>
 
 const Input = ({
@@ -15,6 +16,7 @@ const Input = ({
   name,
   error = '',
   register,
+  appendRightContent = null,
   ...otherProps
 }: InputProps) => {
   let inputProps = {
@@ -41,11 +43,11 @@ const Input = ({
       {
         label && (<label htmlFor={name} className='mb-2'>{ label }</label> ) 
       }
-      <input
-        {...inputProps}
-        // onChange={(e: any,f: any) => console.log(e, f)}
+
+      <div
         className={clx(
-          'p-2 w-full rounded-lg bg-white p-2 border-[1px] border-gray-300 border-solid',
+          'flex items-center',
+          'w-full rounded-lg bg-white border-[1px] border-gray-300 border-solid',
           'focus:bg-slate-100 focus:outline-none focus:border-slate-400 placeholder:text-gray-400',
           {
             'border-red-500 focus:border-red-500': hasError,
@@ -53,7 +55,18 @@ const Input = ({
             'cursor-not-allowed placeholder:text-gray-700 bg-slate-300': otherProps?.disabled,
           }
         )}
-      />
+      >
+        <input
+          {...inputProps}
+          className={clx(
+            'p-2 w-full rounded-lg bg-white p-2 flex-1',
+            'focus:outline-none',
+            
+          )}
+          // onChange={(e: any,f: any) => console.log(e, f)}
+        />
+        { appendRightContent && (<span className='pr-2'>{ appendRightContent }</span>) }
+      </div>
       { hasError? (
         <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
           { error }

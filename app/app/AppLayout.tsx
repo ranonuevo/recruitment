@@ -1,11 +1,13 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
 import AppTopBar from '@/components/global/AppTopBar'
 import AppSideBar from '@/components/global/AppSideBar'
 import AppRightPanelBar from '@/components/global/AppRightPanelBar'
 import clx from '@/utils/clx'
 import AppContextProvider from '@/hooks/useAppContext'
+import * as PATHS from '@/constants/paths'
 
 type AppLayoutProps = {
   children: React.ReactNode,
@@ -16,12 +18,17 @@ export default function AppLayout({
   children,
   session
 }: AppLayoutProps) {
+  const pathname = usePathname()
   const { isRecruiter, user } = session
-  const [isOpen, setIsOpen] = useState<boolean>(isRecruiter)
-
+  const [isOpen, setIsOpen] = useState<boolean>(false)
+  
+  const showRightPAnelContent = pathname === PATHS.PATH_APP_APPLICANT || pathname === PATHS.PATH_APP_PROSPECT
+  
   useEffect(() => {
-    setIsOpen(isRecruiter)
-  }, [isRecruiter])
+    if (showRightPAnelContent) {
+      // setIsOpen(isRecruiter)
+    }
+  }, [isRecruiter, showRightPAnelContent])
 
   return (
     <AppContextProvider session={session}>
@@ -31,8 +38,9 @@ export default function AppLayout({
         <div>
           <div 
             className={clx(
-              'px-7 transition-[margin-right] duration-500',
-              isOpen? 'mr-[450px]' : 'mr-0'
+              'px-7 transition-[margin-right]',
+              (showRightPAnelContent && isOpen)? 'mr-[450px]' : 'mr-0',
+              { 'duration-500': showRightPAnelContent },
             )}
             id='content'
           >
@@ -40,12 +48,15 @@ export default function AppLayout({
             
             {children}
           </div>
-
-          <AppRightPanelBar 
-            isOpen={isOpen} 
-            isRecruiter={isRecruiter} 
-            setIsOpen={setIsOpen} 
-          />
+          
+          {
+            showRightPAnelContent && (
+              <AppRightPanelBar 
+                isOpen={isOpen} 
+                isRecruiter={isRecruiter} 
+                setIsOpen={setIsOpen} 
+              />
+          )}
         </div>
       </main>
     </AppContextProvider>
