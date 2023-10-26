@@ -1,3 +1,4 @@
+'use client'
 
 import {
   Cross2Icon,
@@ -21,7 +22,6 @@ export default function DataTableFilter<TData>({
   table,
 }: DataTableFilterProps<TData>) {
   const isFiltered = table.getState().columnFilters.length > 0
-
   const columns = table.getAllFlatColumns()
 
   const isColumnExist = (id: string) => {

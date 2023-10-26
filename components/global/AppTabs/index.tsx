@@ -10,8 +10,8 @@ type Item = {
 
 type AppTabsProps = {
   items: Item[]
-  defaultTabSelected: string
-  variant: 'default' | 'inline'
+  defaultTabSelected?: string
+  variant?: 'default' | 'inline'
 }
 
 export default function AppTabs ({

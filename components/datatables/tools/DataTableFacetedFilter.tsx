@@ -36,9 +36,9 @@ export default function DataTableFacetedFilter<TData, TValue>({
   title,
   options,
 }: DataTableFacetedFilterProps<TData, TValue>) {
-  const facets = column?.getFacetedUniqueValues()
+  const facets = column?.getFacetedUniqueValues() // TODO: Error in column?.getFacetedUniqueValues() -> library issue
   const selectedValues = new Set(column?.getFilterValue() as string[])
-  
+
   return (
     <Popover>
       <PopoverTrigger asChild>
