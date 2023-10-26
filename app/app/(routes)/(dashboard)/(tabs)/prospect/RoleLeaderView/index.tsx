@@ -17,7 +17,7 @@ export default function LeaderView ({
   data
 }: LeaderViewProps) {
 
-  const { table, globalFilter, setGlobalFilter } = useDataTable(data, columns)
+  const { table, globalFilter, setGlobalFilter, viewType, setViewType } = useDataTable('LeaderViewProspect', data, columns)
 
   return (
     <>
@@ -30,6 +30,8 @@ export default function LeaderView ({
         table={table} 
         globalFilter={globalFilter} 
         setGlobalFilter={setGlobalFilter} 
+        viewType={viewType}
+        setViewType={setViewType}
       />
 
       <div className='w-full mt-3 flex justify-end'>

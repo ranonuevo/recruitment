@@ -1,3 +1,4 @@
+import clx from '@/utilities/clx'
 import { FileText } from 'lucide-react'
 
 type PersonalDetailsProps = {
@@ -7,20 +8,29 @@ type PersonalDetailsProps = {
 type RowType = {
   label?: String
   value: String | React.ReactElement
+  highlightValue?: boolean
 }
 
 export default function PersonalDetails ({
-  data
+  data,
 }: PersonalDetailsProps) {
   
-  const Row = ({ label, value}: RowType) => (
+  const Row = ({ 
+    label, 
+    value, 
+    highlightValue = true
+  }: RowType) => (
     <div className='flex mb-4'>
       { label && 
-        <div className='w-[220px] text-[#4084e3]'>
+        <div className='w-[220px]'>
           { label }
         </div>
       }
-      <div className='flex-1'>
+      <div className={clx(
+          'flex-1',
+          highlightValue? 'text-[#4084e3]' : ''
+        )}
+      >
         {
           typeof value === 'string'? value : (value? value : '')
         }
@@ -61,7 +71,8 @@ export default function PersonalDetails ({
           <Row value={`
               With analytical abilities and adaptability, good at paying attention to detail and policy analysis.
               However, may need to work on communication, people skills and sales abilities...
-            `} 
+            `}
+            highlightValue={false} 
           />
         </div>
       </div>

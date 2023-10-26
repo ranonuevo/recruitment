@@ -1,32 +1,21 @@
 
-import { Heart } from 'lucide-react'
-
+import FavoriteIcon from '@/components/global/Favorite'
 
 type DataTableCellFavoriteProps = {
   data: any
+  currentValue: any
 }
 
 export default function DataTableCellFavorite ({
-  data
+  data,
+  currentValue
 }: DataTableCellFavoriteProps) {
-  const { table, getValue, row, column } = data
-  const isFavorite: boolean = getValue() === true
+  const { table, row, column } = data
+  const isFavorite: boolean = currentValue === true
 
   const handleFavorite = () => {
     table.options.meta?.updateData(row.index, column.id, !isFavorite)
   }
 
-  
-
-  return (
-    <div className='flex justify-center'>
-      {
-        isFavorite? (
-          <Heart className='fill-[red] cursor-pointer' stroke='0' onClick={handleFavorite} />
-        ) : (
-          <Heart className='fill-[#b3b3bf] cursor-pointer' stroke='0' onClick={handleFavorite} />
-        )
-      }
-    </div>
-  )
+  return <FavoriteIcon isFavorite={isFavorite} handleToggle={handleFavorite} />
 }

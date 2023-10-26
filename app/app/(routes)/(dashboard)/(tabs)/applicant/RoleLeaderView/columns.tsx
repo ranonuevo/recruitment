@@ -154,7 +154,7 @@ export const columns: ColumnDef<Applicant>[] = [
       label: 'Favorite'
     },
     header: '',
-    cell: data => <DataTableCellFavorite data={data} />,
+    cell: data => <DataTableCellFavorite data={data} currentValue={data.getValue()} />,
     filterFn: (row, id, value) => {
       return value === Boolean(row.getValue(id))
     },

@@ -1,8 +1,6 @@
 import type { Metadata } from 'next'
+import dynamic from 'next/dynamic'
 import { getServerSideSession } from '@/libs/auth'
-import RoleLeaderView from './RoleLeaderView'
-import RoleRecruiterView from './RoleRecruiterView'
-
 import { getAllApplicants } from '@/libs/applicants'
 import * as ROLES from '@/constants/roles'
 import { Prospect as ProspectType } from '@/app/app/(routes)/(dashboard)/(tabs)/prospect/RoleRecruiterView/columns'
@@ -10,6 +8,14 @@ import { Prospect as ProspectType } from '@/app/app/(routes)/(dashboard)/(tabs)/
 export const metadata: Metadata = {
   title: 'Applicant'
 }
+
+const DynamicRoleRecruiterView = dynamic(() => import('./RoleRecruiterView'), {
+  ssr: false
+})
+const DynamicRoleLeaderView = dynamic(() => import('./RoleLeaderView'), {
+  ssr: false
+})
+
 
 export default async function Applicant () {
   const { isRecruiter, user } = await getServerSideSession()
@@ -19,8 +25,8 @@ export default async function Applicant () {
   const data = await prospectsData
 
   if (isRecruiter) {
-    return <RoleRecruiterView user={user} data={data} />
+    return <DynamicRoleRecruiterView user={user} data={data} />
   }
 
-  return <RoleLeaderView user={user} data={data} />
+  return <DynamicRoleLeaderView user={user} data={data} />
 }

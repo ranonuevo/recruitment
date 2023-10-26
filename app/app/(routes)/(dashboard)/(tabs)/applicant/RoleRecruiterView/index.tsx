@@ -16,7 +16,6 @@ export default function RecruiterView ({
   return (
     <>
       <div className='mb-5 flex gap-2'>
-        
         <Tabs />
       </div>
     </>

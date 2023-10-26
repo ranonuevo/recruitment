@@ -25,7 +25,7 @@ export default function DataTablePagination<TData>({
   pageLimitList
 }: DataTablePaginationProps<TData>) {
   return (
-    <div className='flex items-center justify-between py-2'>
+    <div className='flex items-center justify-between'>
       <div className='flex-1 text-sm text-muted-foreground'>
         {table.getFilteredSelectedRowModel().rows.length} of{' '}
         {table.getFilteredRowModel().rows.length} row(s) selected.

@@ -7,17 +7,22 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { Button } from '@/components/ui/button'
 import { getStatesLabelByValue, STATIC_STATES } from '@/constants/static-data'
+import clx from '@/utilities/clx'
 
 type DataTableCellStateProps = {
   data: any
+  currentValue: any
+  isCardView?: boolean
 }
 
 export default function DataTableCellState ({
-  data
+  data,
+  currentValue,
+  isCardView = false
 }: DataTableCellStateProps) {
-  const { table, getValue, row, column } = data
+  const { table, row, column } = data
 
-  const state = getStatesLabelByValue(getValue()) 
+  const state = getStatesLabelByValue(currentValue) 
   
   const handleState = (newValue: string) => {
     table.options.meta?.updateData(row.index, column.id, newValue)
@@ -26,8 +31,16 @@ export default function DataTableCellState ({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant='ghost' className='m-0 p-0 h-auto text-left justify-start min-w-[100px]'>
-          { state }
+        <Button 
+          variant='ghost' 
+          className={clx(
+            'p-0 m-0 h-auto',
+            {
+              'justify-start min-w-[100px]': !isCardView
+            }
+          )}
+        >
+          <span className='bg-primary/10 text-primary p-1 text-xs'>{ state }</span>
         </Button>
       </DropdownMenuTrigger>
 

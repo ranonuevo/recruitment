@@ -17,7 +17,6 @@ export default function NotificationRows ({
             <li key={`notification-${item.id}-${index}`} className='flex gap-4 items-start py-2'>
               <div className='mt-2'>
                 <AvatarProfile 
-                  imgUrl={`https://picsum.photos/id/${item.id}/100`}
                   name={item.name}
                 />
               </div>

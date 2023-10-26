@@ -15,6 +15,7 @@ import {
   DataTableViewOptions,
   DataTableViewType
 } from '@/components/datatables/tools'
+import GalleryView from './GalleryView'
 
 type RecruiterViewProps = {
   user: any,
@@ -25,8 +26,13 @@ export default function RecruiterView ({
   user,
   data
 }: RecruiterViewProps) {
-  
-  const { table, globalFilter, setGlobalFilter } = useDataTable(data, columns)
+  const { 
+    table, 
+    globalFilter, 
+    setGlobalFilter, 
+    viewType, 
+    setViewType 
+  } = useDataTable('RecruiterViewApplicant', data, columns)
   
   return (
     <>
@@ -44,7 +50,7 @@ export default function RecruiterView ({
         <Tabs />
 
         <div className='flex gap-2 items-center'>
-          <DataTableViewType />
+          <DataTableViewType viewType={viewType} setViewType={setViewType} />
           <DatePickerWithRange />
           <DataTableSearch 
             globalFilter={globalFilter} 
@@ -55,7 +61,12 @@ export default function RecruiterView ({
       </div>
 
       <Collapsible user={user} table={table}>
-        <DataTable table={table} columns={columns} />
+        <DataTable 
+          table={table} 
+          columns={columns} 
+          viewType={viewType} 
+          galleryViewCard={(row: any) => (<GalleryView key={row.id} table={table} row={row} />)}
+        />
       </Collapsible>
     </>
   )

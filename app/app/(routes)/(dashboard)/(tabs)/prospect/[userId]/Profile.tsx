@@ -21,8 +21,7 @@ export default function Profile ({}: ProfileProps) {
     <div className='flex items-center gap-4'>
       <div className=''>
         <AvatarProfile 
-          className='w-[100px] h-[100px]'
-          imgUrl='https://picsum.photos/id/52/100'
+          size='large'
           name='Dehen Loh'
         />
       </div>
