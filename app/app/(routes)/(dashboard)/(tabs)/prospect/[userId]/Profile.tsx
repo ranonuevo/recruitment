@@ -15,20 +15,23 @@ const socials = [
 ]
 
 type ProfileProps = {
+  data: any
 }
-export default function Profile ({}: ProfileProps) {
+export default function Profile ({
+  data
+}: ProfileProps) {
   return (
     <div className='flex items-center gap-4'>
       <div className=''>
         <AvatarProfile 
           size='large'
-          name='Dehen Loh'
+          name={data.name}
         />
       </div>
       <div className=''>
-        <div className='text-2xl'>Dehen Loh</div>
+        <div className='text-2xl'>{ data.name || '' }</div>
         <div className='text-[10px] text-gray-400 mt-2'>
-          <span className='mr-4'>Prospect ID: 3213223</span> 
+          <span className='mr-4'>Prospect ID: 3213223{data.id || ''}</span> 
           <span>Interested Position: Senior Agent</span>
         </div>
         

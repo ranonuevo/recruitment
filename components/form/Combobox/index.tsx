@@ -1,21 +1,31 @@
+/* eslint-disable */
 'use client'
 
 import * as React from 'react'
-import { Check, ChevronsUpDown } from 'lucide-react'
-import { cn } from '@/libs/utils'
-import { Button } from '@/components/ui/button'
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-} from '@/components/ui/command'
+import { useState, useRef, useEffect, useCallback, type KeyboardEvent } from 'react'
+import InputDebounced from '@/components/form/InputDebounced'
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover'
+
+
+export type Option = {
+  label: string
+  value: any,
+  [key: string]: any
+}
+
+type AutoCompleteProps = {
+  options: Option[]
+  emptyMessage?: string
+  value?: Option
+  onValueChange?: any, //(value: Option) => void
+  isLoading?: boolean
+  disabled?: boolean
+  placeholder?: string
+}
 
 const frameworks = [
   {
@@ -80,49 +90,75 @@ const frameworks = [
   },
 ]
 
-export default function Combobox() {
-  const [open, setOpen] = React.useState(false)
-  const [value, setValue] = React.useState('')
+export default function Combobox({
+  options,
+  placeholder,
+  emptyMessage = '',
+  value,
+  onValueChange,
+  disabled = false,
+  isLoading = false,
+}: AutoCompleteProps) {
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  const [isOpen, setOpen] = useState(false)
+  const [selected, setSelected] = useState<Option>(value as Option)
+  const [
+    inputValue, // eslint-disable-line
+    setInputValue
+  ] = useState<string>(value?.label || '')
+
+  const handleKeyDown = useCallback(
+    (event: KeyboardEvent<HTMLDivElement>) => {
+      const input = inputRef.current
+      if (!input) {
+        return
+      }
+
+      // Keep the options displayed when the user is typing
+      if (!isOpen) {
+        setOpen(true)
+      }
+
+      // This is not a default behaviour of the <input /> field
+      if (event.key === 'Enter' && input.value !== '') {
+        const optionToSelect = options.find((option) => option.label === input.value)
+        if (optionToSelect) {
+          setSelected(optionToSelect)
+          onValueChange?.(optionToSelect)
+        }
+      }
+
+      if (event.key === 'Escape') {
+        input.blur()
+      }
+    },
+    [isOpen, options, onValueChange]
+  )
+
+  const handleBlur = useCallback(() => {
+    setOpen(false)
+    // setInputValue(selected?.label)
+  }, [selected])
 
   return (
-    <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild>
-        <Button
-          variant='outline'
-          role='combobox'
-          aria-expanded={open}
-          className='w-[200px] justify-between'
-        >
-          {value
-            ? frameworks.find((framework) => framework.value === value)?.label
-            : 'Select framework...'}
-          <ChevronsUpDown className='ml-2 h-4 w-4 shrink-0 opacity-50' />
-        </Button>
+    <Popover open={isOpen}>
+      <PopoverTrigger>
+        <InputDebounced
+          // ref={inputRef}
+          value={inputValue}
+          // onChange={(event: React.ChangeEvent<HTMLInputElement>) => setGlobalFilter(String(event.target.value))}
+          onChange={(value: String) => setInputValue(String(value))}
+          // onValueChange={isLoading? undefined : setInputValue}
+          // onBlur={handleBlur}
+          onFocus={() => setOpen(true)}
+          placeholder={placeholder}
+          disabled={disabled}
+          className='text-base'
+        />
       </PopoverTrigger>
       <PopoverContent className='w-[200px] p-0'>
-        <Command>
-          <CommandInput placeholder='Search framework...' />
-          <CommandEmpty>No framework found.</CommandEmpty>
-          <CommandGroup>
-            {frameworks.map((framework) => (
-              <CommandItem
-                key={framework.value}
-                onSelect={(currentValue) => {
-                  setValue(currentValue === value ? '' : currentValue)
-                  setOpen(false)
-                }}
-              >
-                <Check
-                  className={cn(
-                    'mr-2 h-4 w-4',
-                    value === framework.value ? 'opacity-100' : 'opacity-0'
-                  )}
-                />
-                {framework.label}
-              </CommandItem>
-            ))}
-          </CommandGroup>
-        </Command>
+        <div>test</div>
       </PopoverContent>
     </Popover>
   )

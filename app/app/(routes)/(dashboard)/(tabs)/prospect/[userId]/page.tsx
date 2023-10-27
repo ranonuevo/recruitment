@@ -30,7 +30,7 @@ export default async function Prospect ({
     <div>
       <div className='grid grid-cols-4 gap-5'>
         <div className='pt-[25px]'>
-          <Profile />
+          <Profile data={data?.user} />
         </div>
         <div>
           <ProfileState data={data?.user} />
@@ -39,7 +39,7 @@ export default async function Prospect ({
           <ProfileActionButtons />
         </div>
         <div className='flex justify-end items-start'>
-          <ProfileActionSearch />
+          <ProfileActionSearch data={data?.user} />
         </div>
       </div>
 

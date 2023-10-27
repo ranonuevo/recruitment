@@ -37,7 +37,7 @@ export default function ProfileState ({
             placeholder='Select State'
             styleController={{
               color: '#4084e3',
-              maxWidth: '200px'
+              width: '200px',
             }}
             // styleContainer={{
             //   width: '100%'

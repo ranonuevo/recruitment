@@ -18,16 +18,15 @@ export default function Collapsible ({
   
   return (
     <div>
-      <div className='flex mb-5 items-center'>
-        <span className='mr-2'>Recruiter:</span>
+      <div className='flex mb-5 items-center justify-between'>
+          <div className='flex items-center mr-5'>
+            <span className='mr-2'>Recruiter:</span>
+            <span className='mr-2'>{ user?.name }</span>
 
-        <div className='flex items-center mr-5'>
-          <span className='mr-2'>{ user?.name }</span>
-
-          <span onClick={() => setIsOpen(!isOpen)} className='cursor-pointer'>
-            { isOpen? <ChevronDown /> : <ChevronUp />}
-          </span>
-        </div>
+            <span onClick={() => setIsOpen(!isOpen)} className='cursor-pointer'>
+              { isOpen? <ChevronDown /> : <ChevronUp />}
+            </span>
+          </div>
 
         <DataTableFilter table={table} />
       </div>

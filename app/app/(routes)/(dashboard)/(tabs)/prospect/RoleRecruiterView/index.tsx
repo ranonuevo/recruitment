@@ -56,7 +56,7 @@ export default function RecruiterView ({
             globalFilter={globalFilter} 
             setGlobalFilter={setGlobalFilter} 
           />
-          <DataTableViewOptions table={table} />
+          <DataTableViewOptions table={table} viewType={viewType}  />
         </div>
       </div>
 

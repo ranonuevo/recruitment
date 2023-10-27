@@ -20,9 +20,13 @@ export default function PersonalDetails ({
     value, 
     highlightValue = true
   }: RowType) => (
-    <div className='flex mb-4'>
+    <div 
+      className={clx(
+          'grid grid-cols-[220px_minmax(0,1fr)] mb-4'
+        )}
+      >
       { label && 
-        <div className='w-[220px]'>
+        <div className=''>
           { label }
         </div>
       }
@@ -42,7 +46,11 @@ export default function PersonalDetails ({
     <section className="mt-10 w-full bg-white p-5">
       <h3 className='text-lg'>Personal Details</h3>
 
-      <div className='grid grid-cols-[minmax(0,1fr)_minmax(0,1fr)_25%] gap-4 text-sm mt-4'>
+      <div className={clx(
+        'gap-4 text-sm mt-4',
+        'sm:flex sm:flex-col sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]',
+        'lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_25%]'
+      )}>
         <div>
           <Row label='Name' value={data?.name} />
           <Row label='Last Name' value={data?.lastName} />
