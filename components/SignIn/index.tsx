@@ -65,7 +65,7 @@ export default function SignIn () {
     return (
       <FieldController 
         name={name} 
-        // @ts-ignore
+        // @ts-ignore TODO: remove ignore ts 
         fieldsConfig={formConfig}  
         hookForm={hookForm}
       />

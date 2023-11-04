@@ -20,12 +20,16 @@ const Input = forwardRef(({
   appendRightContent = null,
   ...otherProps
 }: InputProps, ref: any) => {
-  
+
   let inputProps = {
     type,
     label,
     name,
-    ...otherProps
+    ...otherProps,
+    className: clx(
+      'p-2 w-full rounded-lg bg-white p-2 flex-1',
+      'focus:outline-none',
+    )
   }
 
   // if react hook form register mounted
@@ -58,16 +62,8 @@ const Input = forwardRef(({
           }
         )}
       >
-        <input
-          {...inputProps}
-          className={clx(
-            'p-2 w-full rounded-lg bg-white p-2 flex-1',
-            'focus:outline-none',
-            
-          )}
-          ref={ref}
-          // onChange={(e: any,f: any) => console.log(e, f)}
-        />
+        { ref? <input ref={ref} {...inputProps} /> : <input {...inputProps} /> }
+
         { appendRightContent && (<span className='pr-2'>{ appendRightContent }</span>) }
       </div>
       { hasError? (
