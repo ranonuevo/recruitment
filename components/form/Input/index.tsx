@@ -1,3 +1,4 @@
+import { forwardRef } from 'react'
 import clx from '@/utils/clx'
 
 type InputProps = {
@@ -8,9 +9,9 @@ type InputProps = {
   error?: any,
   register?: Function,
   appendRightContent?: React.ReactElement | null
-} & React.ComponentProps<'input'>
+} & React.ComponentProps<'input'> & React.RefAttributes<any>
 
-const Input = ({
+const Input = forwardRef(({
   type = 'text',
   label = '',
   name,
@@ -18,7 +19,8 @@ const Input = ({
   register,
   appendRightContent = null,
   ...otherProps
-}: InputProps) => {
+}: InputProps, ref: any) => {
+  
   let inputProps = {
     type,
     label,
@@ -47,12 +49,12 @@ const Input = ({
       <div
         className={clx(
           'flex items-center',
-          'w-full rounded-lg bg-white border-[1px] border-gray-300 border-solid',
-          'focus:bg-slate-100 focus:outline-none focus:border-slate-400 placeholder:text-gray-400',
+          'w-full rounded-md bg-white border-[1px] border-gray-300 border-solid',
+          'focus:bg-slate-100 focus:outline-none focus:border-slate-400 placeholder:slate-gray-400',
           {
             'border-red-500 focus:border-red-500': hasError,
             'bg-slate-100': otherProps?.readOnly,
-            'cursor-not-allowed placeholder:text-gray-700 bg-slate-300': otherProps?.disabled,
+            'cursor-not-allowed placeholder:text-gray-700 bg-slate-300 disabled:opacity-50': otherProps?.disabled,
           }
         )}
       >
@@ -63,6 +65,7 @@ const Input = ({
             'focus:outline-none',
             
           )}
+          ref={ref}
           // onChange={(e: any,f: any) => console.log(e, f)}
         />
         { appendRightContent && (<span className='pr-2'>{ appendRightContent }</span>) }
@@ -74,6 +77,8 @@ const Input = ({
       ) : null}
     </div>
   )
-}
+})
+
+Input.displayName = 'Input'
 
 export default Input

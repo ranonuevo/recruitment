@@ -22,3 +22,16 @@ export async function getProspect (userId: string) {
 
   return res.json()
 }
+
+export async function searchProspect (signal: any, name: string) {
+
+  const url = `${API.API_PROSPECTS}?search=${name}`
+  
+  const res = await fetch(url, {
+    signal
+  })
+    
+  if (!res.ok) throw new Error('Failed to fetch prospect')
+
+  return res.json()
+}

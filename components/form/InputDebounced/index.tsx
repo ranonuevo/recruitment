@@ -1,19 +1,21 @@
 import Input from '@/components/form/Input'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, forwardRef } from 'react'
 
 
 type InputDebouncedProps = {
   value: string | number
   onChange: any
   debounce?: number
+  appendRightContent?: React.ReactElement | null
 }
 
-export default function InputDebounced({
+const InputDebounced = forwardRef(({
   value: initialValue,
   onChange,
   debounce = 500,
+  appendRightContent = null,
   ...props
-}: InputDebouncedProps & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'>) {
+}: InputDebouncedProps & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'>, ref: any) => {
   const [value, setValue] = useState(initialValue)
 
   useEffect(() => {
@@ -33,6 +35,12 @@ export default function InputDebounced({
       {...props} 
       value={value} 
       onChange={(e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value)} 
+      appendRightContent={appendRightContent}
+      ref={ref}
     />
   )
-}
+})
+
+InputDebounced.displayName = 'InputDebounced'
+
+export default InputDebounced
